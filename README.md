@@ -22,7 +22,9 @@
 از Workers & Pages یک Worker ساده با نام `dorhamisaz-api` ایجاد کنید.
 در Edit Code، محتوای فایل `cloudflare/worker.js` این مخزن را جایگزین و Deploy کنید.
 سپس در Storage & Databases → D1 یک دیتابیس **جدید و خالی** به نام `dorhamisaz` بسازید.
-در Console دیتابیس، فایل `cloudflare/new-database.sql` را فقط یک بار اجرا کنید. این فایل برای دیتابیس جدید است؛ روی دیتابیس سایت فعلی اجرا نکنید.
+در Console دیتابیس، محتوای `cloudflare/new-database.sql` را کپی و Execute کنید. این نسخه بدون کامنت و تک‌خطی است تا با کپی روی موبایل مشکلی ایجاد نشود. جدول‌ها و ایندکس‌های موجود را حذف یا بازنویسی نمی‌کند. نتیجه باید `ready_tables = 8` و `attendance_ready = 1` باشد.
+اگر تلاش قبلی ناقص مانده و فقط `attendance_ready = 0` است، ابتدا در همان دیتابیس جدید `PRAGMA table_info(members);` را اجرا و نبودن ستون `attendance` را تأیید کنید؛ سپس فقط دستور `ALTER TABLE members ADD COLUMN attendance text DEFAULT 'pending' NOT NULL;` را اجرا کنید. این دستور ALTER را دوباره اجرا نکنید.
+این فایل برای آماده‌سازی دیتابیس جدید است؛ روی دیتابیس سایت فعلی اجرا نکنید.
 در Worker → Settings/Bindings، دیتابیس را با نام دقیق `DB` متصل کنید و Worker را مجدداً Deploy کنید.
 آدرس Worker را نگه دارید. آدرس `/api/health` باید `{"ok":true}` برگرداند.
 هیچ API token یا رمز دیتابیس نباید در فایل‌های عمومی ذخیره شود.
