@@ -1,0 +1,9 @@
+export type EventKind="cafe"|"picnic"|"game"|"party";
+export type Gathering={id:string;title:string;kind:EventKind;description:string;budget:number;finalTimeId:string|null;finalPlaceId:string|null;createdAt:number};
+export type Member={id:string;name:string;role:"host"|"guest";attendance:"pending"|"yes"|"maybe"|"no";createdAt:number};
+export type Option={id:string;kind:"time"|"place";label:string;date:string;time:string;address:string;url:string;createdAt:number};
+export type Vote={optionId:string;memberId:string;value:"yes"|"maybe"|"no"};
+export type Task={id:string;title:string;quantity:string;assigneeId:string|null;done:number;authorId:string;createdAt:number};
+export type Expense={id:string;title:string;amount:number;payerId:string;participantIds:string[];authorId:string;createdAt:number};
+export type Comment={id:string;authorId:string;topic:"general"|"time"|"place";body:string;createdAt:number};
+export type EventData={event:Gathering;members:Member[];options:Option[];votes:Vote[];tasks:Task[];expenses:Expense[];comments:Comment[];me:Member|null};

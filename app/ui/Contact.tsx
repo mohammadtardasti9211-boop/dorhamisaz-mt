@@ -1,0 +1,14 @@
+"use client";
+import {useState} from "react";
+import {copyText} from "@/lib/client";
+import {Camera as Instagram,Copy,MessageCircle,Phone,Send} from "lucide-react";
+export const instagram="mohammadtardasti_beyondreality";
+const contactPhone="989034006816";
+export function SocialLinks(){
+ const[copied,setCopied]=useState(false),[copyError,setCopyError]=useState(false);
+ async function copyPhone(){try{await copyText("+"+contactPhone);setCopied(true);setCopyError(false);}catch{setCopyError(true);}}
+ return <div className="social-block"><div className="social-links"><a href={`https://wa.me/${contactPhone}`} target="_top" rel="noreferrer"><MessageCircle size={19}/><span>واتساپ</span></a><a href={`https://t.me/+${contactPhone}`} target="_top" rel="noreferrer"><Send size={19}/><span>تلگرام</span></a><a href={`https://www.instagram.com/${instagram}/`} target="_blank" rel="noopener noreferrer"><Instagram size={19}/><span>اینستاگرام</span></a></div>
+ <details className="messenger-help"><summary>پیام‌رسان باز نشد؟</summary><p>اگر برنامه روی گوشی نصب است، از دکمه‌های مستقیم استفاده کن. داخل مرورگر برنامه‌ها می‌تونی سایت رو با Safari باز کنی.</p><div className="messenger-direct"><a href={`whatsapp://send?phone=${contactPhone}`} target="_top">باز کردن مستقیم واتساپ</a><a href={`tg://resolve?phone=${contactPhone}`} target="_top">باز کردن مستقیم تلگرام</a></div><div className="messenger-number"><span dir="ltr">+{contactPhone}</span><button type="button" onClick={copyPhone}><Copy size={14}/>{copied?"شماره کپی شد":"کپی شماره"}</button></div>{copyError&&<p role="status">شمارهٔ بالا رو لمس کن و نگه دار تا دستی کپی کنی.</p>}<small>برای تلگرام، پیدا شدن حساب با شماره به تنظیمات حریم خصوصی صاحب حساب بستگی دارد.</small></details></div>;
+}
+export function ContactDetails(){return <div className="contact-details"><p>برای ارتباط با محمد تردستی، پیشنهادها و بازخوردت دربارهٔ دورهمی‌ساز، از این راه‌ها در تماس باش.</p><a className="contact-line" href="tel:+989034006816"><Phone size={20}/><span><small>تماس با محمد تردستی</small><b dir="ltr">۰۹۰۳۴۰۰۶۸۱۶</b></span></a><a className="contact-line" href={`https://www.instagram.com/${instagram}/`} target="_blank" rel="noopener noreferrer"><Instagram size={20}/><span><small>اینستاگرام من</small><b dir="ltr">@{instagram}</b></span></a><SocialLinks/></div>;}
+export function ContactFooter(){return <section className="contact-footer" id="contact"><div><span className="eyebrow">یه پیام، شروع یه ارتباط</span><h2>با محمد در تماس باش</h2><p>ایده‌ای داری که دورهمی‌هامون رو بهتر کنه؟ خوشحال می‌شم بشنوم.</p><a className="contact-phone" href="tel:+989034006816"><Phone size={17}/><b dir="ltr">۰۹۰۳۴۰۰۶۸۱۶</b></a></div><div><SocialLinks/><a className="footer-instagram" href={`https://www.instagram.com/${instagram}/`} target="_blank" rel="noopener noreferrer" dir="ltr">@{instagram}</a></div></section>;}

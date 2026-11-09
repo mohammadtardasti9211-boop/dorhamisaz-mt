@@ -1,0 +1,10 @@
+import React from "react";
+import {createRoot} from "react-dom/client";
+import App from "./app/ui/App";
+import "./app/globals.css";
+import "./app/red-theme.css";
+import "./app/white-theme.css";
+import "./app/social-theme.css";
+const raw=new URLSearchParams(window.location.search).get("g");
+const eventId=raw&&/^[a-f0-9]{32}$/.test(raw)?raw:undefined;
+createRoot(document.getElementById("root")!).render(<App eventId={eventId}/>);
