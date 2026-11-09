@@ -12,13 +12,12 @@ concurrency:
   cancel-in-progress: true
 jobs:
   publish:
-    if: ${{ vars.VITE_API_BASE_URL != '' }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     env:
-      VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+      VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL || 'https://dorhamisaz-api.mohammadnabio2476.workers.dev' }}
       SITE_BASE_PATH: /dorhamisaz-mt/
     steps:
       - uses: actions/checkout@v4
